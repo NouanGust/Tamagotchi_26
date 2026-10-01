@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://cm2feqwshsks"]
+
+[ext_resource type="Script" uid="uid://bbgsmn0pksh46" path="res://Scripts/main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://c4mfglr7x2t3m" path="res://Scripts/task_repository.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cd7r0vtx5ao03" path="res://Scripts/gamification_core.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://dvk2m3s5bwn2e" path="res://Scripts/task_ui.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bp4r5q3u1f53x" path="res://task_item.tscn" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://gs7d7lm07clg" path="res://Scripts/bio_tracker.gd" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bfpo5j4f0vxqo" path="res://bio_ui.tscn" id="7_272bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(0.6488386, 0.48768348, 0.9814107, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+
+[sub_resource type="Theme" id="Theme_5vw27"]
+VBoxContainer/constants/separation = 4
+VBoxContainer/styles/_ = SubResource("StyleBoxFlat_272bh")
+
+[node name="Main" type="Node" unique_id=961190500]
+script = ExtResource("1_1bvp3")
+
+[node name="TaskRepository" type="Node" parent="." unique_id=1328458824]
+script = ExtResource("2_0xm2m")
+
+[node name="GamificationCore" type="Node" parent="." unique_id=23379909]
+script = ExtResource("3_h2yge")
+
+[node name="BioTracker" type="Node" parent="." unique_id=1198712261]
+script = ExtResource("6_7mycd")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1168161785]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[node name="AppLayout" type="VBoxContainer" parent="Background" unique_id=181004288]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5vw27")
+theme_override_constants/separation = 15
+
+[node name="TopHUD" type="HBoxContainer" parent="Background/AppLayout" unique_id=63231718]
+layout_mode = 2
+
+[node name="XPLabel" type="Label" parent="Background/AppLayout/TopHUD" unique_id=254485769]
+layout_mode = 2
+text = "XP: 0"
+
+[node name="CoinsLabel" type="Label" parent="Background/AppLayout/TopHUD" unique_id=131410683]
+layout_mode = 2
+text = "Moedas: 0"
+
+[node name="MainUI" type="TabContainer" parent="Background/AppLayout" unique_id=955609348]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+current_tab = 0
+tabs_position = 1
+
+[node name="TaskUI" type="Control" parent="Background/AppLayout/MainUI" unique_id=1564363079]
+layout_mode = 2
+script = ExtResource("3_lquwl")
+task_item_scene = ExtResource("4_lquwl")
+metadata/_tab_index = 0
+
+[node name="SafeAreaMargin" type="MarginContainer" parent="Background/AppLayout/MainUI/TaskUI" unique_id=1715182489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainVBox" type="VBoxContainer" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin" unique_id=855269158]
+layout_mode = 2
+
+[node name="InputHBox" type="HBoxContainer" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox" unique_id=85077253]
+layout_mode = 2
+
+[node name="TaskLineEdit" type="LineEdit" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox/InputHBox" unique_id=1838972937]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox/InputHBox" unique_id=812053212]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox/InputHBox" unique_id=1205453865]
+layout_mode = 2
+text = "+"
+
+[node name="HSeparator" type="HSeparator" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox" unique_id=1826033551]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox" unique_id=759567115]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TaskList" type="VBoxContainer" parent="Background/AppLayout/MainUI/TaskUI/SafeAreaMargin/MainVBox/ScrollContainer" unique_id=1740245211]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BioUI" parent="Background/AppLayout/MainUI" unique_id=271842656 instance=ExtResource("7_272bh")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ProgressBar" parent="Background/AppLayout/MainUI/BioUI/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(271842656, 1851766094) index="1" unique_id=1086322937]
+max_value = 400.0
+
+[editable path="Background/AppLayout/MainUI/BioUI"]

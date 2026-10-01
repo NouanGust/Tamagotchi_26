@@ -1,0 +1,23 @@
+# Cache do Godot 4 (Obrigatório ignorar)
+.godot/
+
+# Arquivos de exportação e executáveis
+*.apk
+*.aab
+*.exe
+*.zip
+*.tar.gz
+*.pck
+export_presets.cfg
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar os binários gerados pelo Gradle no Custom Build do Android
+# Mas PERMITE versionar o AndroidManifest.xml e configurações que editamos
+android/build/build/
+android/build/.gradle/
+android/build/app/build/
+android/build/libs/
+.gradle/

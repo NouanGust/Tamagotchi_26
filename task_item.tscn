@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bp4r5q3u1f53x"]
+
+[ext_resource type="Script" uid="uid://clsue5jpsnu5o" path="res://Scripts/task_item.gd" id="1_dk68d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk68d"]
+bg_color = Color(0.61023676, 0.4902419, 0.5452679, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+
+[node name="TaskItem" type="PanelContainer" unique_id=507765256]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -640.0
+offset_right = -135.0
+offset_bottom = -553.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk68d")
+script = ExtResource("1_dk68d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=585645590]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=839878827]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=344736222]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Tarefa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompleteButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1803722964]
+layout_mode = 2
+text = "FEITO"
+
+[node name="PostponeButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1995799924]
+layout_mode = 2
+text = "+ 24h"
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1546293712]
+layout_mode = 2
+text = "X"
